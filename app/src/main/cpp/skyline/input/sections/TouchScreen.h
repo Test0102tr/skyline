@@ -25,7 +25,7 @@ namespace skyline::input {
         i32 angle; //!< The angle of the touch in degrees (from -89 to 90 [-90 and 90 aren't distinguishable], while on the Switch this has limited resolution with only 90, -67, -45, 0, 45, 67, 90 being values)
         u32 _pad1_;
     };
-    static_assert(sizeof(TouchScreenStateData) == 0x28);
+    static_assert(sizeof(TouchScreenStateData) == 0x30);
 
     /**
      * @url https://switchbrew.org/wiki/HID_Shared_Memory#TouchScreenState
@@ -45,7 +45,7 @@ namespace skyline::input {
     struct TouchScreenSection {
         CommonHeader header;
         std::array<TouchScreenState, constant::HidEntryCount> entries;
-        u64 _pad_[0x79];
+        u64 _pad_[0x89];
     };
     static_assert(sizeof(TouchScreenSection) == 0x3000);
 }
