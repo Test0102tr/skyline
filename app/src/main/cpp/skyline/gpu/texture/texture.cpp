@@ -147,6 +147,14 @@ namespace skyline::gpu {
         if (GetBacking())
             SynchronizeHost();
     }
+    
+    BYTE* source = static_cast<BYTE*>(mappedTexture.pData);
+BYTE& dest = m_pBits;
+for (int i = 0; i < IMAGE_HEIGHT; ++i) {
+    memcpy(dest, source, IMAGE_WIDTH * 4); // for 4 bytes per pixel
+    source += mappedTexture.RowPitch;
+    dest += IMAGE_WIDTH * 4;
+}
 
     Texture::Texture(GPU &gpu, BackingType &&backing, texture::Dimensions dimensions, texture::Format format, vk::ImageLayout layout, vk::ImageTiling tiling, u32 mipLevels, u32 layerCount, vk::SampleCountFlagBits sampleCount)
         : gpu(gpu),
