@@ -130,7 +130,7 @@ namespace skyline::gpu {
     Texture::TextureBufferCopy::TextureBufferCopy(std::shared_ptr<Texture> texture, std::shared_ptr<memory::StagingBuffer> stagingBuffer) : texture(std::move(texture)), stagingBuffer(std::move(stagingBuffer)) {}
 
     Texture::TextureBufferCopy::~TextureBufferCopy() {
-        texture->CopyToGuest(stagingBuffer ? stagingBuffer->data() : std::get<memory::Image>(texture->backing).data());
+        texture->CopyToGuest(stagingBuffer ->data() : stagingBuffer->data() : std::get<memory::Image>(texture->backing).data());
     }
 
     Texture::Texture(GPU &gpu, BackingType &&backing, GuestTexture guest, texture::Dimensions dimensions, texture::Format format, vk::ImageLayout layout, vk::ImageTiling tiling, u32 mipLevels, u32 layerCount, vk::SampleCountFlagBits sampleCount)
